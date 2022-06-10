@@ -1,8 +1,8 @@
 package ru.dankos.api.stockservice.controller.dto
 
-class StockResponse(
+class StockPriceResponse(
     val ticker: String,
-    val name: String,
+    val companyName: String,
     val moneyValue: MoneyValue,
 )
 

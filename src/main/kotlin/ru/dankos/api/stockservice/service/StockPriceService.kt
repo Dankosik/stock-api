@@ -5,7 +5,7 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import org.springframework.stereotype.Service
 import ru.dankos.api.stockservice.controller.dto.MoneyValue
-import ru.dankos.api.stockservice.controller.dto.StockResponse
+import ru.dankos.api.stockservice.controller.dto.StockPriceResponse
 import ru.dankos.api.stockservice.controller.dto.TickersListRequest
 import ru.dankos.api.stockservice.exception.StockNotFoundException
 import ru.dankos.api.stockservice.extension.awaitSingle
@@ -15,18 +15,18 @@ import ru.tinkoff.piapi.core.MarketDataService
 import ru.tinkoff.piapi.core.exception.ApiRuntimeException
 
 @Service
-class StockService(
+class StockPriceService(
     private val instrumentsService: InstrumentsService,
     private val marketDataService: MarketDataService
 ) {
-    suspend fun getStockByTicker(ticker: String): StockResponse =
+    suspend fun getStockPriceByTicker(ticker: String): StockPriceResponse =
         try {
             val stock = instrumentsService.getShareByTicker(ticker, "SPBXM").awaitSingle()
             val figi = stock.figi
             val lastPrice = marketDataService.getLastPrices(listOf(figi)).awaitSingle()[0]
-            StockResponse(
+            StockPriceResponse(
                 ticker = stock.ticker,
-                name = stock.name,
+                companyName = stock.name,
                 moneyValue = lastPrice.toAmount(stock.currency)
             )
         } catch (e: ApiRuntimeException) {
@@ -34,7 +34,7 @@ class StockService(
         }
 
     suspend fun getStocksByTickers(request: TickersListRequest) = coroutineScope {
-        request.tickers.map { async { getStockByTicker(it) } }.awaitAll()
+        request.tickers.map { async { getStockPriceByTicker(it) } }.awaitAll()
     }
 
     private fun LastPrice.toAmount(currency: String) = MoneyValue(
