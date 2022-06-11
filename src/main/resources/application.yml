@@ -5,3 +5,18 @@ tinkoff:
       classCode: "TQBR"
     spbe:
       classCode: "SPBXM"
+
+  minorUnitsByCurrency:
+    usd: 2
+    eur: 2
+    gbp: 2
+    chf: 2
+    cny: 2
+    jpy: 0
+    hkd: 2
+    try: 2
+    kzt: 2
+    byn: 2
+  defaultMinorUnits: 2
+
+
