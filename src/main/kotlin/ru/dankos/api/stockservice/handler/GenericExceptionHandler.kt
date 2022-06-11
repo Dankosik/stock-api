@@ -1,13 +1,11 @@
 package ru.dankos.api.stockservice.handler
 
 import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import ru.dankos.api.stockservice.exception.ErrorResponse
 import ru.dankos.api.stockservice.exception.StockNotFoundException
 import java.util.*
 

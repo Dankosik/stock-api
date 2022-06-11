@@ -18,6 +18,9 @@ class StockInfoService(
     suspend fun getStockInfoByTicker(ticker: String): StockInfoResponse =
         instrumentsService.getShareByTicker(ticker, "SPBXM").awaitSingle().toStockInfoResponse()
 
+    suspend fun getAllAvailableTickers(): List<String> =
+        instrumentsService.allShares.awaitSingle().map { it.ticker }
+
     suspend fun getStocksInfoByTickers(request: TickersListRequest) = coroutineScope {
         request.tickers.map { async { getStockInfoByTicker(it) } }.awaitAll()
     }

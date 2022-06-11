@@ -21,13 +21,11 @@ class StockPriceService(
 ) {
     suspend fun getStockPriceByTicker(ticker: String): StockPriceResponse =
         try {
-            val stock = instrumentsService.getShareByTicker(ticker, "SPBXM").awaitSingle()
-            val figi = stock.figi
-            val lastPrice = marketDataService.getLastPrices(listOf(figi)).awaitSingle()[0]
+            val share = instrumentsService.getShareByTicker(ticker, "SPBXM").awaitSingle()
+            val lastPrice = marketDataService.getLastPrices(listOf(share.figi)).awaitSingle()[0]
             StockPriceResponse(
-                ticker = stock.ticker,
-                companyName = stock.name,
-                moneyValue = lastPrice.toAmount(stock.currency)
+                ticker = share.ticker,
+                moneyValue = lastPrice.toAmount(share.currency)
             )
         } catch (e: ApiRuntimeException) {
             throw StockNotFoundException("Stock not found")

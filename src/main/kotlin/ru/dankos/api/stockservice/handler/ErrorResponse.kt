@@ -1,4 +1,4 @@
-package ru.dankos.api.stockservice.exception
+package ru.dankos.api.stockservice.handler
 
 import java.util.*
 
