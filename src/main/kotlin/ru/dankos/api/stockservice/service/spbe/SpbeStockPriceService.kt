@@ -40,8 +40,7 @@ class SpbeStockPriceService(
 
     private fun LastPrice.toAmount(currency: String) = SpbeMoneyValue(
         value = ((price.nano.div(10000000)) + (price.units) * 100).toInt(),
-        minorUnits = 2,
+        minorUnits = tinkoffProperties.minorUnitsByCurrency[currency] ?: tinkoffProperties.defaultMinorUnits,
         currency = currency,
-
-        )
+    )
 }

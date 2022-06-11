@@ -7,6 +7,8 @@ import org.springframework.boot.context.properties.ConstructorBinding
 @ConfigurationProperties(prefix = "tinkoff")
 class TinkoffProperties(
     val api: Api,
+    val minorUnitsByCurrency: Map<String, Int>,
+    val defaultMinorUnits: Int,
 )
 
 class Api(
