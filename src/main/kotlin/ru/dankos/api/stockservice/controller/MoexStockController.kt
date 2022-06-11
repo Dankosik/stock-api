@@ -8,7 +8,7 @@ import ru.dankos.api.stockservice.service.moex.MoexStockInfoService
 import ru.dankos.api.stockservice.service.moex.MoexStockPriceService
 
 @RestController
-@RequestMapping("/stock-api/moex/stocks")
+@RequestMapping("/moex/stocks")
 class MoexStockController(
     private val moexStockPriceService: MoexStockPriceService,
     private val moexStockInfoService: MoexStockInfoService

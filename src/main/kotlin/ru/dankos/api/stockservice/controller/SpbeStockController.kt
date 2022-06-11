@@ -8,7 +8,7 @@ import ru.dankos.api.stockservice.service.spbe.SpbeStockInfoService
 import ru.dankos.api.stockservice.service.spbe.SpbeStockPriceService
 
 @RestController
-@RequestMapping("/stock-api/spbe/stocks")
+@RequestMapping("/spbe/stocks")
 class SpbeStockController(
     private val spbeStockPriceService: SpbeStockPriceService,
     private val spbeStockInfoService: SpbeStockInfoService
