@@ -105,3 +105,24 @@ endpoint`ы
     "currency": "RUR"
     }
 ```
+
+Пример ответа московской биржи
+
+```js
+{
+    "marketdata": {
+        "columns": [
+            "SECID",
+            "LAST",
+            "TIME"
+        ],
+            "data": [
+            [
+                "SBER",
+                118.07,
+                "18:49:39"
+            ]
+        ]
+    }
+}
+```
