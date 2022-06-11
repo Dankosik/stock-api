@@ -12,8 +12,10 @@ class TinkoffApiConfig(
 ) {
 
     @Bean
-    fun instrumentsService(): InstrumentsService = InvestApi.createReadonly(tinkoffProperties.token).instrumentsService
+    fun instrumentsService(): InstrumentsService =
+        InvestApi.createReadonly(tinkoffProperties.api.token).instrumentsService
 
     @Bean
-    fun marketDataService(): MarketDataService = InvestApi.createReadonly(tinkoffProperties.token).marketDataService
+    fun marketDataService(): MarketDataService =
+        InvestApi.createReadonly(tinkoffProperties.api.token).marketDataService
 }

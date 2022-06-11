@@ -6,5 +6,19 @@ import org.springframework.boot.context.properties.ConstructorBinding
 @ConstructorBinding
 @ConfigurationProperties(prefix = "tinkoff")
 class TinkoffProperties(
-    val token: String
+    val api: Api,
+)
+
+class Api(
+    val token: String,
+    val moex: Moex,
+    val spbe: Spbe,
+)
+
+class Moex(
+    val classCode: String
+)
+
+class Spbe(
+    val classCode: String
 )

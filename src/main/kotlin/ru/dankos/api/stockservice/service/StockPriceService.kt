@@ -4,6 +4,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import org.springframework.stereotype.Service
+import ru.dankos.api.stockservice.config.TinkoffProperties
 import ru.dankos.api.stockservice.controller.dto.MoneyValue
 import ru.dankos.api.stockservice.controller.dto.StockPriceResponse
 import ru.dankos.api.stockservice.controller.dto.TickersListRequest
@@ -17,11 +18,12 @@ import ru.tinkoff.piapi.core.exception.ApiRuntimeException
 @Service
 class StockPriceService(
     private val instrumentsService: InstrumentsService,
-    private val marketDataService: MarketDataService
+    private val marketDataService: MarketDataService,
+    private val tinkoffProperties: TinkoffProperties,
 ) {
     suspend fun getStockPriceByTicker(ticker: String): StockPriceResponse =
         try {
-            val share = instrumentsService.getShareByTicker(ticker, "SPBXM").awaitSingle()
+            val share = instrumentsService.getShareByTicker(ticker, tinkoffProperties.api.spbe.classCode).awaitSingle()
             val lastPrice = marketDataService.getLastPrices(listOf(share.figi)).awaitSingle()[0]
             StockPriceResponse(
                 ticker = share.ticker,
