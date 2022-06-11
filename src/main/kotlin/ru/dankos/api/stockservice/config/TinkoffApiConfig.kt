@@ -18,4 +18,9 @@ class TinkoffApiConfig(
     @Bean
     fun marketDataService(): MarketDataService =
         InvestApi.createReadonly(tinkoffProperties.api.token).marketDataService
+
+    val currencyMap = hashMapOf<String, Int>(
+        "usd" to 2, "eur" to 2, "gbp" to 2, "chf" to 2,
+        "cny" to 2, "jpy" to 0, "hkd" to 2, "try" to 2, "kzt" to 2, "byn" to 2
+    )
 }

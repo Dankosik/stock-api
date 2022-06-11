@@ -1,4 +1,4 @@
-package ru.dankos.api.stockservice.service
+package ru.dankos.api.stockservice.service.spbe
 
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -14,23 +14,23 @@ import ru.tinkoff.piapi.core.InstrumentsService
 import ru.tinkoff.piapi.core.exception.ApiRuntimeException
 
 @Service
-class StockInfoService(
+class SpbeStockInfoService(
     private val instrumentsService: InstrumentsService,
     private val tinkoffProperties: TinkoffProperties,
 ) {
 
-    suspend fun getStockInfoByTicker(ticker: String): StockInfoResponse = try {
+    suspend fun getSpbeStockInfoByTicker(ticker: String): StockInfoResponse = try {
         instrumentsService.getShareByTicker(ticker, tinkoffProperties.api.spbe.classCode)
             .awaitSingle().toStockInfoResponse()
     } catch (e: ApiRuntimeException) {
         throw StockNotFoundException("Stock not found")
     }
 
-    suspend fun getAllAvailableTickers(): List<String> =
+    suspend fun getAllSpbeAvailableTickers(): List<String> =
         instrumentsService.allShares.awaitSingle().map { it.ticker }
 
-    suspend fun getStocksInfoByTickers(request: TickersListRequest) = coroutineScope {
-        request.tickers.map { async { getStockInfoByTicker(it) } }.awaitAll()
+    suspend fun getSpbeStocksInfoByTickers(request: TickersListRequest) = coroutineScope {
+        request.tickers.map { async { getSpbeStockInfoByTicker(it) } }.awaitAll()
     }
 
     private fun Share.toStockInfoResponse() = StockInfoResponse(
