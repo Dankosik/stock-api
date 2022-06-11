@@ -89,8 +89,8 @@ endpoint`ы
 ```js
 "ticker": "SBER",
 "moneyValue": {
-    "value": 118,
-    "minorUnits": "0.07",
+    "integer": 118,
+    "fractional": "0.07",
     "currency": "RUR"
 }
 ```
