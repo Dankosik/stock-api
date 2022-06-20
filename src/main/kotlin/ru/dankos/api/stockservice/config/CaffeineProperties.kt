@@ -4,11 +4,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 
 @ConstructorBinding
-@ConfigurationProperties(prefix = "tinkoff")
-class TinkoffProperties(
-    val api: Api,
+@ConfigurationProperties(prefix = "caching")
+class CaffeineProperties(
+    val specs: Map<String, CacheSpec>
 )
 
-class Api(
-    val token: String,
+class CacheSpec(
+    val timeout: Long,
 )

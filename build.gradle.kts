@@ -17,14 +17,17 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-cache")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.apache.kafka:kafka-streams")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.kafka:spring-kafka")
+    implementation("com.github.ben-manes.caffeine:caffeine")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.1")
-    implementation ("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.6")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.1")
+    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.6")
 
     implementation("ru.tinkoff.piapi:java-sdk-core:1.0-M8")
 

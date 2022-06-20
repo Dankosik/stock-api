@@ -15,7 +15,7 @@ import ru.dankos.api.stockservice.service.StockPriceService
 @RequestMapping("/stocks")
 class StockController(
     private val stockPriceService: StockPriceService,
-    private val stockInfoService: StockInfoService
+    private val stockInfoService: StockInfoService,
 ) {
 
     @GetMapping("/info")

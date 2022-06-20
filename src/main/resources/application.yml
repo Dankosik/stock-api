@@ -1,7 +1,9 @@
+caching:
+  specs:
+    allShares:
+      timeout: 2500000 #1 day
+    figis:
+      timeout: 10
 tinkoff:
   api:
     token: "t.txS1pNPoXBUtCrdlwiD9ZfBkmwhEBNOw-mWOAG-9STdFJPU4hHT-T72QBZ2NbetFnDeKOARLGDgp9kL53W_lAw"
-    moex:
-      classCode: "TQBR"
-    spbe:
-      classCode: "SPBXM"
