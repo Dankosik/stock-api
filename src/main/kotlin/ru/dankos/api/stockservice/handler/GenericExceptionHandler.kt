@@ -1,6 +1,7 @@
 package ru.dankos.api.stockservice.handler
 
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -11,10 +12,10 @@ import java.util.*
 @RestControllerAdvice
 class GenericExceptionHandler {
 
-//    @ResponseStatus(INTERNAL_SERVER_ERROR)
-//    @ExceptionHandler(value = [Exception::class])
-//    internal fun handleAnyException(exception: Exception): ErrorResponse =
-//        exception.toErrorResponse(INTERNAL_SERVER_ERROR)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(value = [Exception::class])
+    internal fun handleAnyException(exception: Exception): ErrorResponse =
+        exception.toErrorResponse(INTERNAL_SERVER_ERROR)
 
     @ResponseStatus(NOT_FOUND)
     @ExceptionHandler(value = [StockNotFoundException::class])
