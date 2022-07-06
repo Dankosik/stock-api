@@ -1,1 +1,1 @@
-rootProject.name = "stock-service"
+rootProject.name = "stock-api"
