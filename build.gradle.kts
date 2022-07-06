@@ -10,6 +10,8 @@ plugins {
 group = "ru.dankos.api"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
+extra["springCloudVersion"] = "2021.0.3"
+
 repositories {
     mavenCentral()
 }
@@ -25,7 +27,10 @@ dependencies {
     implementation("com.github.ben-manes.caffeine:caffeine")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
-    implementation("org.springframework.cloud:spring-cloud-starter-kubernetes:1.1.10.RELEASE")
+    implementation("org.springframework.cloud:spring-cloud-starter-kubernetes-client-all")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+    implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
+
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.1")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.6")
@@ -35,6 +40,12 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
 }
 
 tasks.withType<KotlinCompile> {
