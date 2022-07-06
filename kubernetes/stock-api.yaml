@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-api-deployment
+  labels:
+    app: stock-api-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: stock-api
+  template:
+    metadata:
+      labels:
+        app: stock-api
+    spec:
+      containers:
+        - name: stock-api-pod
+          image: dankosik/stock-api
+          ports:
+            - containerPort: 8080
+          env:
+            - name: spring.webflux.base-path
+              value: /stock-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    visualize: "true"
+  name: stock-api-service
+spec:
+  selector:
+    app: stock-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
