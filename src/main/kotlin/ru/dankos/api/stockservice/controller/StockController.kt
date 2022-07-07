@@ -48,7 +48,7 @@ class StockController(
     suspend fun getMoexStocks(@PathVariable ticker: String): MoexStockPriceResponse =
         moexStockApiClient.getMoexStockPriceByTicker(ticker).awaitSingle()
 
-    @GetMapping(value = ["moex/subscribe/{ticker}"], produces = [MediaType.APPLICATION_STREAM_JSON_VALUE])
+    @GetMapping(value = ["/moex/subscribe/{ticker}"], produces = [MediaType.APPLICATION_STREAM_JSON_VALUE])
     fun subscribe(@PathVariable ticker: String): Flow<MoexStockPriceResponse> =
         moexStockApiClient.getMoexStockPriceByTickerAsFlow(ticker).asFlow()
 }
