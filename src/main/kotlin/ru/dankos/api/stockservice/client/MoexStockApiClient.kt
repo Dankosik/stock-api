@@ -14,6 +14,6 @@ interface MoexStockApiClient {
     fun getMoexStockPriceByTicker(@PathVariable("ticker") ticker: String): Mono<MoexStockPriceResponse>
 
 
-    @GetMapping("/moex-stock-api/stocks/subscribe/{ticker}}")
+    @GetMapping("/moex-stock-api/stocks/subscribe/{ticker}")
     fun getMoexStockPriceByTickerAsFlow(@PathVariable("ticker") ticker: String): Flux<MoexStockPriceResponse>
 }
