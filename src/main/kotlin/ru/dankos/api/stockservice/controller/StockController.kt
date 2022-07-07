@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import ru.dankos.api.stockservice.client.MoexStockApiClient
+import ru.dankos.api.stockservice.client.dto.MoexStockPriceResponse
 import ru.dankos.api.stockservice.controller.dto.StockInfoResponse
 import ru.dankos.api.stockservice.controller.dto.StockPriceResponse
 import ru.dankos.api.stockservice.controller.dto.TickersListRequest
@@ -16,7 +18,7 @@ import ru.dankos.api.stockservice.service.StockPriceService
 class StockController(
     private val stockPriceService: StockPriceService,
     private val stockInfoService: StockInfoService,
-//    private val moexStockApiClient: MoexStockApiClient,
+    private val moexStockApiClient: MoexStockApiClient,
 ) {
 
     @GetMapping("/info")
@@ -37,8 +39,8 @@ class StockController(
 
     @GetMapping("/tickers")
     suspend fun getAllTickers(): List<String> = stockInfoService.getAllAvailableTickers()
-//
-//    @GetMapping("/moex/{ticker}")
-//    suspend fun getMoexStocks(ticker: String): MoexStockPriceResponse =
-//        moexStockApiClient.getMoexStockPriceByTicker(ticker)
+
+    @GetMapping("/moex/{ticker}")
+    suspend fun getMoexStocks(ticker: String): MoexStockPriceResponse =
+        moexStockApiClient.getMoexStockPriceByTicker(ticker)
 }
