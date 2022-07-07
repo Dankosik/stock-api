@@ -31,7 +31,7 @@ dependencies {
 //    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("com.playtika.reactivefeign:feign-reactor-spring-cloud-starter:3.2.1")
     implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
-
+    implementation("io.github.microutils:kotlin-logging:2.1.21")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.1")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.6")

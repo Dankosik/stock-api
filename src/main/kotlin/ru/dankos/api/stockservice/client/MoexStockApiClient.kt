@@ -10,5 +10,5 @@ import ru.dankos.api.stockservice.client.dto.MoexStockPriceResponse
 interface MoexStockApiClient {
 
     @GetMapping("/stocks/price/{ticker}")
-    fun getMoexStockPriceByTicker(@PathVariable ticker: String): Mono<MoexStockPriceResponse>
+    fun getMoexStockPriceByTicker(@PathVariable("ticker") ticker: String): Mono<MoexStockPriceResponse>
 }
