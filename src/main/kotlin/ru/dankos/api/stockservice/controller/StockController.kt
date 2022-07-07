@@ -42,6 +42,6 @@ class StockController(
     suspend fun getAllTickers(): List<String> = stockInfoService.getAllAvailableTickers()
 
     @GetMapping("/moex/{ticker}")
-    suspend fun getMoexStocks(ticker: String): MoexStockPriceResponse =
+    suspend fun getMoexStocks(@PathVariable ticker: String): MoexStockPriceResponse =
         moexStockApiClient.getMoexStockPriceByTicker(ticker).awaitSingle()
 }
