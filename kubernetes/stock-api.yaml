@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: intraday-traiding
   name: stock-api-deployment
   labels:
     app: stock-api-deployment
@@ -26,6 +27,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: intraday-traiding
   name: stock-api-service
 spec:
   selector:
