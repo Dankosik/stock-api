@@ -9,6 +9,6 @@ import ru.dankos.api.stockservice.client.dto.MoexStockPriceResponse
 @ReactiveFeignClient(name = "moex-stock-api-service")
 interface MoexStockApiClient {
 
-    @GetMapping("stocks/price/{ticker}")
+    @GetMapping("/stocks/price/{ticker}")
     fun getMoexStockPriceByTicker(@PathVariable ticker: String): Mono<MoexStockPriceResponse>
 }
