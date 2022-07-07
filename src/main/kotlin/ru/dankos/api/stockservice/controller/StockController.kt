@@ -1,6 +1,9 @@
 package ru.dankos.api.stockservice.controller
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactor.awaitSingle
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
@@ -44,4 +47,8 @@ class StockController(
     @GetMapping("/moex/{ticker}")
     suspend fun getMoexStocks(@PathVariable ticker: String): MoexStockPriceResponse =
         moexStockApiClient.getMoexStockPriceByTicker(ticker).awaitSingle()
+
+    @GetMapping(value = ["moex/subscribe/{ticker}"], produces = [MediaType.APPLICATION_STREAM_JSON_VALUE])
+    fun subscribe(@PathVariable ticker: String): Flow<MoexStockPriceResponse> =
+        moexStockApiClient.getMoexStockPriceByTickerAsFlow(ticker).asFlow()
 }
