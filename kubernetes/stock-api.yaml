@@ -26,8 +26,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    visualize: "true"
   name: stock-api-service
 spec:
   selector:

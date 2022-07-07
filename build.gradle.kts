@@ -27,9 +27,9 @@ dependencies {
     implementation("com.github.ben-manes.caffeine:caffeine")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
-    implementation("org.springframework.cloud:spring-cloud-starter-kubernetes-client-all")
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-    implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
+//    implementation("org.springframework.cloud:spring-cloud-starter-kubernetes-client-all")
+//    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+//    implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
 
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.1")
