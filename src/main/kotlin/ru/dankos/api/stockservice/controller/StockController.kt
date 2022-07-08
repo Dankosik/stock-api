@@ -1,9 +1,6 @@
 package ru.dankos.api.stockservice.controller
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactor.awaitSingle
-import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
@@ -12,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController
 import ru.dankos.api.stockservice.client.MoexStockApiClient
 import ru.dankos.api.stockservice.client.dto.MoexStockPriceResponse
 import ru.dankos.api.stockservice.controller.dto.StockInfoResponse
+import ru.dankos.api.stockservice.controller.dto.StockPriceRequest
 import ru.dankos.api.stockservice.controller.dto.StockPriceResponse
 import ru.dankos.api.stockservice.controller.dto.TickersListRequest
+import ru.dankos.api.stockservice.service.MoexStockService
 import ru.dankos.api.stockservice.service.StockInfoService
 import ru.dankos.api.stockservice.service.StockPriceService
 
@@ -22,7 +21,8 @@ import ru.dankos.api.stockservice.service.StockPriceService
 class StockController(
     private val stockPriceService: StockPriceService,
     private val stockInfoService: StockInfoService,
-    private val moexStockApiClient: MoexStockApiClient,
+    private val moexStockService: MoexStockService,
+    private val moexStockApiClient: MoexStockApiClient
 ) {
 
     @GetMapping("/info")
@@ -48,7 +48,7 @@ class StockController(
     suspend fun getMoexStocks(@PathVariable ticker: String): MoexStockPriceResponse =
         moexStockApiClient.getMoexStockPriceByTicker(ticker).awaitSingle()
 
-    @GetMapping(value = ["/moex/subscribe/{ticker}"], produces = [MediaType.APPLICATION_STREAM_JSON_VALUE])
-    fun subscribe(@PathVariable ticker: String): Flow<MoexStockPriceResponse> =
-        moexStockApiClient.getMoexStockPriceByTickerAsFlow(ticker).asFlow()
+    @GetMapping("/moex/subscribe")
+    suspend fun subscribe(@RequestBody stockPriceRequest: StockPriceRequest): MoexStockPriceResponse =
+        moexStockService.subscribePrice(stockPriceRequest)
 }
