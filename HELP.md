@@ -30,22 +30,6 @@ These additional references should also help you:
 
 ## stock-api
 
-### 1) Реализовать получение данных с московской биржи
-
-Необходимо добавить endpoint`ы
-
-* stock-api/moex/stocks/info
-* stock-api/moex/stocks/info/{ticker}
-* stock-api/moex/stocks/price
-* stock-api/moex/stocks/price/{ticker}
-* stock-api/moex/stocks/tickers
-
-class_code московской биржи находится в конфигах приложения
-
-Заменить существующие endpoint`ы добавив в начало spbe
-
-Например: stock-api/stocks/tickers -> stock-api/sbpe/stocks/tickers
-
 ### 2) Изменить контракт
 
 endpoint`ы
@@ -70,7 +54,7 @@ endpoint`ы
 "ticker": "VIPS",
 "moneyValue": {
     "value": 1064,
-    "minorUnits": 2,
+    "minorUnits": 100,
     "currency": "usd"
     }
 ```
@@ -101,10 +85,21 @@ endpoint`ы
 "ticker": "SBER",
 "moneyValue": {
     "value": 11807,
-    "minorUnits": 2,
+    "minorUnits": 100,
     "currency": "RUR"
     }
 ```
+
+Также подумать как быть с 
+```js
+"ticker": "VTB",
+"moneyValue": {
+   "integer": 0,
+   "fractional": "0.07123213123",
+   "currency": "RUR"
+    }
+```
+И првиести  к  виду как в примерах выше
 
 Пример ответа московской биржи
 
