@@ -7,6 +7,8 @@ spring:
           all-namespaces: true
   webflux:
     base-path: /stock-api
+server:
+  port: 8080
 caching:
   specs:
     allShares:
