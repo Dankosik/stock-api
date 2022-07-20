@@ -28,7 +28,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
     implementation("org.springframework.cloud:spring-cloud-starter-kubernetes-client-all")
-//    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("com.playtika.reactivefeign:feign-reactor-spring-cloud-starter:3.2.1")
     implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
     implementation("io.github.microutils:kotlin-logging:2.1.21")
