@@ -11,12 +11,13 @@ import ru.dankos.api.stockservice.config.TinkoffProperties
 
 
 @EnableCaching
-@EnableReactiveFeignClients
 @EnableDiscoveryClient
-@SpringBootApplication
+@EnableReactiveFeignClients
 @EnableConfigurationProperties(
-    TinkoffProperties::class, CaffeineProperties::class
+    TinkoffProperties::class,
+    CaffeineProperties::class
 )
+@SpringBootApplication
 class StockServiceApplication
 
 fun main(args: Array<String>) {
