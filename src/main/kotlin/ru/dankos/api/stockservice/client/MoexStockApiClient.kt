@@ -10,10 +10,10 @@ import ru.dankos.api.stockservice.client.dto.MoexStockPriceResponse
 @ReactiveFeignClient(name = "moex-stock-api-service")
 interface MoexStockApiClient {
 
-    @GetMapping("/moex-stock-api/stocks/price/{ticker}")
+    @GetMapping("/moex-stock-api/stocks/{ticker}/price")
     fun getMoexStockPriceByTicker(@PathVariable("ticker") ticker: String): Mono<MoexStockPriceResponse>
 
 
-    @GetMapping("/moex-stock-api/stocks/subscribe/{ticker}")
+    @GetMapping("/moex-stock-api/stocks/{ticker}/subscribe")
     fun getMoexStockPriceByTickerAsFlow(@PathVariable("ticker") ticker: String): Flux<MoexStockPriceResponse>
 }
