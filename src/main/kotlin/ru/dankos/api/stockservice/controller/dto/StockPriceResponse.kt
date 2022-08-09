@@ -6,10 +6,10 @@ class StockPriceResponse(
 )
 
 data class MoneyValue(
-    val integer: Int,
-    val fractional: Int,
+    val value: Int,
+    val minorUnits: Int,
     val currency: String,
 ) {
     operator fun compareTo(other: MoneyValue) =
-        compareValuesBy(this, other, MoneyValue::integer, MoneyValue::fractional)
+        compareValuesBy(this, other, MoneyValue::value, MoneyValue::minorUnits)
 }

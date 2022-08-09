@@ -9,6 +9,7 @@ import ru.dankos.api.stockservice.controller.dto.StockPriceResponse
 import ru.dankos.api.stockservice.controller.dto.TickersListRequest
 import ru.dankos.api.stockservice.extension.awaitSingle
 import ru.tinkoff.piapi.contract.v1.LastPrice
+import kotlin.math.pow
 
 @Service
 class StockPriceService(
@@ -29,9 +30,30 @@ class StockPriceService(
         request.tickers.map { async { getStockPriceByTicker(it) } }.awaitAll()
     }
 
-    private fun LastPrice.toAmount(currency: String) = MoneyValue(
-        integer = price.units.toInt(),
-        fractional = price.nano,
-        currency = currency
-    )
+    private fun LastPrice.toAmount(currency: String): MoneyValue {
+        val amountExtraZeros = (10.0.pow((countZeroDigits(price.nano)).toDouble())).toInt()
+        val exchangeUnit = (price.nano / amountExtraZeros)
+        val minorUnits = 10.0.pow(exchangeUnit.toString().chars().count().toDouble()).toInt()
+        return if (price.nano.toString().count() == AMOUNT_DIGITS_EXCHANGE_UNIT) {
+            MoneyValue(
+                value = ((price.units * minorUnits + exchangeUnit)).toInt(),
+                minorUnits = minorUnits * 10,
+                currency = currency
+            )
+        } else {
+            MoneyValue(
+                value = (price.units * minorUnits + exchangeUnit).toInt(),
+                minorUnits = minorUnits,
+                currency = currency
+            )
+        }
+    }
+
+    private fun countZeroDigits(number: Int) =
+        number.toString().reversed().chars().takeWhile { it.toChar() == ASCII_ZERO_CODE }.count()
+
+    companion object {
+        private const val ASCII_ZERO_CODE = '0'
+        private const val AMOUNT_DIGITS_EXCHANGE_UNIT = 8
+    }
 }
