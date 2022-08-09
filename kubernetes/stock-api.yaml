@@ -23,6 +23,8 @@ spec:
           env:
             - name: spring.webflux.base-path
               value: /stock-api
+            - name: spring.profiles.active
+              value: kuber
 ---
 apiVersion: v1
 kind: Service
