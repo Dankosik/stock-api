@@ -31,8 +31,8 @@ class DividendStockService(
     private fun Dividend.toDividendResponse(ticker: String) =
         DividendResponse(
             moneyValue = MoneyValue(
-                integer = this.dividendNet.units.toInt(),
-                fractional = this.dividendNet.nano,
+                value = this.dividendNet.units.toInt(),
+                minorUnits = this.dividendNet.nano,
                 currency = this.dividendNet.currency
             ),
             ticker = ticker,
