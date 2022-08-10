@@ -11,7 +11,7 @@ reactive:
   feign:
     client:
       config:
-        MoexStockApiClient:
+        default:
           connectTimeout: 2500000
           readTimeout: 2500000
 server:
