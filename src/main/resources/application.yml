@@ -7,13 +7,15 @@ spring:
           all-namespaces: true
   webflux:
     base-path: /stock-api
-reactive:
-  feign:
-    client:
-      config:
-        default:
-          connectTimeout: 2500000
-          readTimeout: 2500000
+#reactive:
+#  feign:
+#    client:
+#      config:
+#        default:
+#          connectTimeout: 2500000
+#          readTimeout: 2500000
+feign-services:
+  moex-stock-api-endpoint: ""
 server:
   port: 8080
 caching:

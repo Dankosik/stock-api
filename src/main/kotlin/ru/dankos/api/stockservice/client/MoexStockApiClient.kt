@@ -7,7 +7,7 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import ru.dankos.api.stockservice.client.dto.MoexStockPriceResponse
 
-@ReactiveFeignClient(name = "moex-stock-api-service")
+@ReactiveFeignClient(name = "moex-stock-api-service", url = "\${feign-services.moex-stock-api-endpoint}")
 interface MoexStockApiClient {
 
     @GetMapping("/moex-stock-api/stocks/{ticker}/price")

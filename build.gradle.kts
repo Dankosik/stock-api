@@ -26,6 +26,8 @@ dependencies {
     implementation("org.springframework.kafka:spring-kafka")
     implementation("com.github.ben-manes.caffeine:caffeine")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+    implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
 
     implementation("org.springframework.cloud:spring-cloud-starter-kubernetes-client-all")
     implementation("com.playtika.reactivefeign:feign-reactor-spring-cloud-starter:3.2.1")
@@ -37,9 +39,19 @@ dependencies {
 
     implementation("ru.tinkoff.piapi:java-sdk-core:1.0-M8")
 
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.cloud:spring-cloud-contract-wiremock")
     testImplementation("org.springframework.kafka:spring-kafka-test")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+}
+
+configurations {
+    testImplementation {
+        exclude(group = "org.springframework.cloud", module = "spring-cloud-starter-config")
+        exclude(group = "org.springframework.cloud", module = "spring-cloud-starter-netflix-eureka-client")
+    }
 }
 
 dependencyManagement {
