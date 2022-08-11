@@ -4,9 +4,6 @@ caching:
       timeout: 2500000 #1 day
     figis:
       timeout: 10
-tinkoff:
-  api:
-    token: "token"
 reactive:
   feign:
     loadbalancer:
@@ -16,3 +13,4 @@ reactive:
         enabled: false
 feign-services:
   moex-stock-api-endpoint: "http://localhost:${wiremock.server.port}"
+  yahoo-stock-api-endpoint: "http://localhost:${wiremock.server.port}"

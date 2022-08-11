@@ -37,8 +37,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.1")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.6")
 
-    implementation("ru.tinkoff.piapi:java-sdk-core:1.0-M8")
-
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.cloud:spring-cloud-contract-wiremock")
     testImplementation("org.springframework.kafka:spring-kafka-test")

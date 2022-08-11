@@ -1,5 +1,7 @@
 spring:
   cloud:
+    kubernetes:
+      enabled: false
     config:
       enabled: false
       discovery:
