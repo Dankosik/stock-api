@@ -19,8 +19,6 @@ class ExchangeResolver(
     suspend fun resolveExchange(ticker: String): Exchanges = coroutineScope {
         val nyseTickers = async { yahooStockApiClient.getAllAvailableTickers().awaitSingle().tickers }
         val moexTickers = async { moexApiClient.getAllAvailableTickers().awaitSingle().tickers }
-        val a = ticker in nyseTickers.await()
-        val b = moexTickers.await().contains(ticker) && nyseTickers.await().contains(ticker)
         return@coroutineScope when {
             ticker in nyseTickers.await() && ticker in moexTickers.await() -> Exchanges.COMMON
             ticker in nyseTickers.await() -> Exchanges.NYSE
