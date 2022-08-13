@@ -5,14 +5,15 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import ru.dankos.api.stockservice.controller.dto.StocksBaseInfoResponse
 import ru.dankos.api.stockservice.controller.dto.StocksPriceResponse
 import ru.dankos.api.stockservice.controller.dto.TickersListRequest
-import ru.dankos.api.stockservice.service.StockPriceService
+import ru.dankos.api.stockservice.service.StockService
 
 @RestController
 @RequestMapping("/stocks")
 class StockController(
-    private val stockPriceService: StockPriceService,
+    private val stockService: StockService,
 ) {
 
 //    @GetMapping("/info")
@@ -25,11 +26,15 @@ class StockController(
 
     @GetMapping("/price")
     suspend fun getStocksPriceByTickers(@RequestBody request: TickersListRequest): List<StocksPriceResponse> =
-        stockPriceService.getStocksPricesByTickers(request)
+        stockService.getStocksPricesByTickers(request)
 
     @GetMapping("/{ticker}/price")
     suspend fun getStockPriceByTicker(@PathVariable ticker: String): StocksPriceResponse =
-        stockPriceService.getStockPriceByTicker(ticker)
+        stockService.getStockPriceByTicker(ticker)
+
+    @GetMapping("/{ticker}/price")
+    suspend fun getStockBaseInfoByTicker(@PathVariable ticker: String): StocksBaseInfoResponse =
+        stockService.getStockBaseInfoByTicker(ticker)
 
 //    @GetMapping("/{ticker}/dividends")
 //    suspend fun getDividendsByTicker(

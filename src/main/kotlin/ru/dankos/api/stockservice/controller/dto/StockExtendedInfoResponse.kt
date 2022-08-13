@@ -1,6 +1,6 @@
 package ru.dankos.api.stockservice.controller.dto
 
-class StockInfoResponse(
+class StockExtendedInfoResponse(
     val ticker: String,
     val stockName: String,
 )
