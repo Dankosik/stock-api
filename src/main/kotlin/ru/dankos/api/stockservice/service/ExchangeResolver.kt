@@ -3,6 +3,7 @@ package ru.dankos.api.stockservice.service
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.reactive.awaitSingle
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 import ru.dankos.api.stockservice.client.MoexStockApiClient
 import ru.dankos.api.stockservice.client.YahooStockApiClient
@@ -14,7 +15,7 @@ class ExchangeResolver(
     private val moexApiClient: MoexStockApiClient
 ) {
 
-    //todo need async cache
+    @Cacheable("exchanges")
     suspend fun resolveExchange(ticker: String): Exchanges = coroutineScope {
         val nyseTickers = async { yahooStockApiClient.getAllAvailableTickers().awaitSingle().tickers }
         val moexTickers = async { moexApiClient.getAllAvailableTickers().awaitSingle().tickers }

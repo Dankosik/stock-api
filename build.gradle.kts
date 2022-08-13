@@ -14,11 +14,14 @@ extra["springCloudVersion"] = "2021.0.3"
 
 repositories {
     mavenCentral()
+    jcenter()
+    maven { url = uri("https://dl.bintray.com/konrad-kaminski/maven") }
 }
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-cache")
+    implementation("com.github.ben-manes.caffeine:caffeine")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.apache.kafka:kafka-streams")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -30,12 +33,13 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
 
     implementation("org.springframework.cloud:spring-cloud-starter-kubernetes-client-all")
-    implementation("com.playtika.reactivefeign:feign-reactor-spring-cloud-starter:3.2.1")
+    implementation("com.playtika.reactivefeign:feign-reactor-spring-cloud-starter:3.2.3")
     implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
-    implementation("io.github.microutils:kotlin-logging:2.1.21")
+    implementation("io.github.microutils:kotlin-logging:2.1.23")
+    implementation("org.springframework.kotlin:spring-kotlin-coroutine:0.3.7")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.1")
-    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.6")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.4")
+    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.7")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.cloud:spring-cloud-contract-wiremock")

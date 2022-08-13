@@ -1,6 +1,11 @@
 spring:
   application:
     name: stock-api-service
+    cache:
+      type: caffeine
+      cache-names: [ 'exchanges' ]
+        caffeine:
+          spec: expireAfterWrite=1080m # 1 week
     cloud:
       kubernetes:
         discovery:
@@ -19,3 +24,6 @@ feign-services:
   yahoo-stock-api-endpoint: ""
 server:
   port: 8080
+logging:
+  level:
+    reactivefeign.client.log: DEBUG
