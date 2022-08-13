@@ -1,9 +1,13 @@
 {
-  "ticker": "SBER",
-  "stockPrice": {
-    "value": 11807,
-    "minorUnits": 100,
-    "currency": "RUR"
-  },
-  "time": "18:49:39"
+  "stocks": [
+    {
+      "ticker": "SBER",
+      "stockPrice": {
+        "value": 11807,
+        "minorUnits": 100,
+        "currency": "RUR"
+      },
+      "time": "18:49:39"
+    }
+  ]
 }
