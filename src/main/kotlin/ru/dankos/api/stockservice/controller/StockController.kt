@@ -32,7 +32,7 @@ class StockController(
     suspend fun getStockPriceByTicker(@PathVariable ticker: String): StocksPriceResponse =
         stockService.getStockPriceByTicker(ticker)
 
-    @GetMapping("/{ticker}/price")
+    @GetMapping("/{ticker}/baseInfo")
     suspend fun getStockBaseInfoByTicker(@PathVariable ticker: String): StocksBaseInfoResponse =
         stockService.getStockBaseInfoByTicker(ticker)
 
