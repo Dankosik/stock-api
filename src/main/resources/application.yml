@@ -19,9 +19,3 @@ feign-services:
   yahoo-stock-api-endpoint: ""
 server:
   port: 8080
-caching:
-  specs:
-    allShares:
-      timeout: 2500000 #1 day
-    figis:
-      timeout: 10

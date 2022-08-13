@@ -4,7 +4,7 @@ import java.time.LocalTime
 
 class StockPriceResponse(
     val ticker: String,
-    val moneyValue: MoneyValue,
+    val stockPrice: MoneyValue,
     val time: LocalTime,
 )
 

@@ -1,9 +1,3 @@
-caching:
-  specs:
-    allShares:
-      timeout: 2500000 #1 day
-    figis:
-      timeout: 10
 reactive:
   feign:
     loadbalancer:

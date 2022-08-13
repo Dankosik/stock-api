@@ -5,17 +5,14 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import ru.dankos.api.stockservice.controller.dto.StockPriceRequest
 import ru.dankos.api.stockservice.controller.dto.StockPriceResponse
 import ru.dankos.api.stockservice.controller.dto.TickersListRequest
-import ru.dankos.api.stockservice.service.MoexStockService
-import ru.dankos.api.stockservice.service.YahooStockPriceService
+import ru.dankos.api.stockservice.service.StockPriceService
 
 @RestController
 @RequestMapping("/stocks")
 class StockController(
-    private val yahooStockPriceService: YahooStockPriceService,
-    private val moexStockService: MoexStockService,
+    private val stockPriceService: StockPriceService,
 ) {
 
 //    @GetMapping("/info")
@@ -28,19 +25,11 @@ class StockController(
 
     @GetMapping("/price")
     suspend fun getStocksPriceByTickers(@RequestBody request: TickersListRequest): List<StockPriceResponse> =
-        yahooStockPriceService.getStocksPricesByTickers(request)
+        stockPriceService.getStocksPricesByTickers(request)
 
     @GetMapping("/{ticker}/price")
     suspend fun getStockPriceByTicker(@PathVariable ticker: String): StockPriceResponse =
-        yahooStockPriceService.getStockPriceByTicker(ticker)
-
-    @GetMapping("/moex/{ticker}")
-    suspend fun getMoexStocks(@PathVariable ticker: String): StockPriceResponse =
-        moexStockService.getStockPriceByTicker(ticker)
-
-    @GetMapping("/moex/subscribe")
-    suspend fun subscribe(@RequestBody stockPriceRequest: StockPriceRequest): StockPriceResponse =
-        moexStockService.subscribePrice(stockPriceRequest)
+        stockPriceService.getStockPriceByTicker(ticker)
 
 //    @GetMapping("/{ticker}/dividends")
 //    suspend fun getDividendsByTicker(
