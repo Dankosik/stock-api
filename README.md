@@ -33,7 +33,7 @@ https://github.com/Dankosik/yahoo-stock-api<br/><br/>
 ```
 
 ### Request<br/>
-`[GET] https://dankos.com/stock-api/stocks/price`
+`[GET] https://dankos.com/stock-api/stocks/price` <br/><br/>
 Body
 ```js
 {
