@@ -1,4 +1,6 @@
-![alt text](https://github.com/Dankosik/stock-api/blob/master/Untitled%20Diagram.drawio.png)<br/>
+![alt text](https://github.com/Dankosik/stock-api/blob/master/Untitled%20Diagram.drawio.png)<br/><br/><br/>
+https://github.com/Dankosik/moex-stock-api<br/><br/>
+https://github.com/Dankosik/yahoo-stock-api<br/><br/>
 # Examples<br/>
 ### Request<br/>
 `[GET] https://dankos.com/stock-api/stocks/AAPL/price`
