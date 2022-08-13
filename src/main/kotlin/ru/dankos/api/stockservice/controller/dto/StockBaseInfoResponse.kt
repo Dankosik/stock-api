@@ -4,6 +4,6 @@ import ru.dankos.api.stockservice.model.Exchanges
 
 class StockBaseInfoResponse(
     val ticker: String,
-    val stockName: String,
+    val companyName: String,
     val exchange: Exchanges,
 )
