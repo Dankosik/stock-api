@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: intraday-traiding
+  name: main-ingress
+spec:
+  rules:
+    - host: dankos.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /moex-stock-api
+            backend:
+              service:
+                name: moex-stock-api-service
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: /stock-api
+            backend:
+              service:
+                name: stock-api-service
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: /yahoo-stock-api
+            backend:
+              service:
+                name: yahoo-api-service
+                port:
+                  number: 80
